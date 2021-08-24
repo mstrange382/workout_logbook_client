@@ -10,7 +10,8 @@ const WorkoutIndex = (props) => {
     const [updateActive, setUpdateActive] = useState(false);
     const [workoutToUpdate, setWorkoutToUpdate] = useState({})
     const fetchWorkouts = () => {
-        fetch('http://localhost:3000/log', {
+        console.log(props.token);
+        fetch('http://localhost:3000/log/', {
             method: 'GET',
             headers: new Headers ({
                 'Content-Type': 'application/json',
@@ -21,6 +22,10 @@ const WorkoutIndex = (props) => {
             setWorkouts(logData)
         })
     }
+    const editUpdateWorkout = workout => setWorkoutToUpdate(workout);
+    const updateOn = () => setUpdateActive(true)
+    const updateOff = () => setUpdateActive(false)
+
 
     useEffect (() => {
         fetchWorkouts();
@@ -33,8 +38,10 @@ const WorkoutIndex = (props) => {
                     <WorkoutCreate fetchWorkouts={fetchWorkouts} token={props.token}/>
                 </Col>
                 <Col md="9">
-                    <WorkoutTable workouts={workouts} fetchWorkouts={fetchWorkouts} token ={props.token}/>
+                    <WorkoutTable updateOn={updateOn} editUpdateWorkout={editUpdateWorkout} workouts={workouts} fetchWorkouts={fetchWorkouts} token ={props.token}/>
                 </Col>
+                {updateActive ? <WorkoutEdit workoutToUpdate={workoutToUpdate}
+                updateOff={updateOff} token={props.token} fetchWorkouts={fetchWorkouts}/> : <> </>}
             </Row>
         </Container>            
         

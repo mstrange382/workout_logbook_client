@@ -33,7 +33,7 @@ function App() {
     <div> 
       <Sitebar clickLogout={clearToken}/>
       {protectedViews()}
-      <Auth />
+      
     </div>
   );
 }
