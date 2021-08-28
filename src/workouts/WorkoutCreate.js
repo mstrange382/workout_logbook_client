@@ -1,11 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import React, {useState} from 'react';
+// import { Container, Row, Col } from 'reactstrap';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 const WorkoutCreate = (props) => {
     const [description, setDescription] = useState('');
     const [definition, setDefinition] = useState('');
     const [result, setResult] = useState('');
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         fetch('http://localhost:3000/log/', {

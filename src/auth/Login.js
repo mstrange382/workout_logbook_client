@@ -19,7 +19,7 @@ const Login = (props) => {
         ).then((data) => {
             props.updateToken(data.sessionToken)
         })
-        //console.log(username,password);
+        console.log(username,password);
     }
 
     return (
